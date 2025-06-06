@@ -24,7 +24,7 @@ class Ob:
 
         #y
 
-        self.numero = random.randint(12, 10)
+        self.numero = random.randint(10, 12)
 
     def desenhar(self, tela):
         tela.blit(self.imagem,(self.pos_x, self.pos_y))
