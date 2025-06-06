@@ -16,7 +16,7 @@ class Obstaculos:
 
         #Posião do obstaculo
 
-        self.lista_faixas = [100,250, 600, 850, 1000]
+        self.lista_faixas = [100,190, 250, 400, 600, 850, 950, 1000]
         self.pos_x = random.choice(self.lista_faixas)
         #x
         self.pos_inicial_y = -600
@@ -24,7 +24,7 @@ class Obstaculos:
 
         #y
 
-        self.numero = random.randint(6, 10)
+        self.numero = random.randint(6, 30)
 
     def desenhar(self, tela):
         tela.blit(self.imagem,(self.pos_x, self.pos_y))
@@ -34,5 +34,5 @@ class Obstaculos:
         if self.pos_y > 650:
             self.pos_y = self.pos_inicial_y
             self.pos_x = random.choice(self.lista_faixas)
-            self.numero = random.randint(1, 10)
+            self.numero = random.randint(1, 30)
             numero = random.random()
