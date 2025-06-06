@@ -3,6 +3,7 @@ import random
 from jogador import Jogador 
 from obstaculos import Obstaculos
 from ob import Ob
+import time
 
 #configurações iniciais 
 pygame.init()
@@ -50,6 +51,9 @@ fundo = pygame.transform.scale(fundo, (1200, 700))  # Ajustando o tamanho da ima
 estado = "DETALHES"
 rodando = True
 jogo_rodando = False
+poder = False
+poder_usos = 3
+contador_tempo = 0
 
 while rodando: # A variavel rodando ira controlar o tempo de jogo 
     for evento in pygame.event.get(): # Pega a lista de eventos feito e percorre
@@ -59,6 +63,10 @@ while rodando: # A variavel rodando ira controlar o tempo de jogo
              if evento.key == pygame.K_RETURN:
                   estado = "JOGANDO"
 
+        if evento.type == pygame.KEYDOWN:
+            if evento.key == pygame.K_SPACE:
+                poder = True
+
     if estado == "DETALHES":
         tela.blit(inicial,(0,0))
 
@@ -67,13 +75,19 @@ while rodando: # A variavel rodando ira controlar o tempo de jogo
 
         tela.blit(fundo,(0,0))
         tela.blit(personagem.imagem,(personagem.pos_x,personagem.pos_y))#Selecionando a imagem que ira até a cordenada 
-
+        
         personagem.movimentar(pygame.K_RIGHT,
                                 pygame.K_LEFT,)
-        
+        if poder == True:
+             contador_tempo += 1 
+             if contador_tempo >= 195:
+                  poder = False
+                  contador_tempo = 0 
+                  
                 #inimigo
         for obstaculo in lista_obstaculo:
-                obstaculo.movimentar()
+                if poder == False:
+                    obstaculo.movimentar()
                 obstaculo.desenhar(tela)
 
                 if personagem.mascara.overlap(obstaculo.mascara, (obstaculo.pos_x-personagem.pos_x,obstaculo.pos_y-personagem.pos_y)):
@@ -82,13 +96,14 @@ while rodando: # A variavel rodando ira controlar o tempo de jogo
                     personagem.som.play()
 
         for obs in lista_ob:
-                obs.movimentar()
+                if poder == False:
+                    obs.movimentar()
                 obs.desenhar(tela)
 
                 if personagem.mascara.overlap(obs.mascara, (obs.pos_x-personagem.pos_x,obs.pos_y- personagem.pos_y)):
                     obs.pos_y = obs.pos_inicial_y
                     personagem.pontuacao -= 1 
-                    personagem.som.play()
+                    personagem2.som.play()
 
                 #Placar homem
                 placar_cara = fonte.render(f"PONTOS: {personagem.pontuacao}", True, (255,255,255), (69,69,69))
