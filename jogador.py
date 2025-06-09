@@ -28,9 +28,9 @@ class Jogador:
         teclas = pygame.key.get_pressed()
 
         if teclas [tecla_esquerda]:
-            if self.pos_x > 0:
+            if self.pos_x > -100:
                 self.pos_x =  self.pos_x - 5 
 
         if teclas [tecla_direita]:
-            if self.pos_x < 1600 - self.largura:
+            if self.pos_x < 1300 - self.largura:
                 self.pos_x =  self.pos_x + 5

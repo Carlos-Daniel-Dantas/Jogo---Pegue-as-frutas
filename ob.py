@@ -16,7 +16,7 @@ class Ob:
 
         #Posião do obstaculo
 
-        self.lista_faixass = [600, 200, 400, 800, 1000, 50, 300, 850]
+        self.lista_faixass = [600, 650, 200, 400, 800, 1000, 50, 300, 850, 1100]
         self.pos_x = random.choice(self.lista_faixass)
         #x
         self.pos_inicial_y = -100
