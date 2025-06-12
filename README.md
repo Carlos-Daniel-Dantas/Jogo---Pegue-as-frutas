@@ -1,0 +1,1 @@
+O jogo consiste em controlar um aventureiro cujo objetivo é coletar o máximo possível de frutas enquanto desvia de obstáculos ágeis e em constante movimento. Para ajudá-lo nessa missão, o personagem conta com um poder especial: a habilidade de parar o tempo. No entanto, esse recurso só pode ser utilizado três vezes por partida, o que exige estratégia para alcançar a vitória.
