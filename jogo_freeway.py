@@ -4,61 +4,61 @@ from jogador import Jogador
 from obstaculos import Obstaculos
 from ob import Ob
 import time
-
+from caminho_relativo import caminho_relativo
 #configurações iniciais 
 pygame.init()
 clock = pygame.time.Clock()
 
-pygame.mixer.music.load("sons/musica_do_jogo.mp3")
+pygame.mixer.music.load(caminho_relativo("sons/musica_do_jogo.mp3"))
 
 pygame.mixer.music.play(-1)
 
 #Ciar Tela 
 tela = pygame.display.set_mode((1200,700)) #RES da tela
 
-pygame.display.set_caption("Jogo Pegue as Frutas - [EXECUTANDO]") #Nome da janela 
+pygame.display.set_caption("Jogo: Pegue as Frutas - [EXECUTANDO] - [Modo Janela]-|1200X700| @65 fps") #Nome da janela 
 
 #Criando Personagem
-personagem = Jogador("imagens/personagem.png",250, 190, 450, 540,"sons/comendo.mp3")
-personagem2 = Jogador("imagens/personagem.png",150, 100, 300, 590,"sons/no.mp3")
-personagem3 = Jogador("imagens/personagem.png",150, 100, 300, 590,"sons/vitoria.mp3")
-inicial = Jogador("imagens/detalhes.png",150, 100, 300, 590,"sons/vitoria.mp3")
-som = Jogador("imagens/detalhes.png",150, 100, 300, 590,"sons/vitoria.mp3")
+personagem = Jogador(caminho_relativo("imagens/personagem.png"),250, 190, 450, 540,caminho_relativo("sons/comendo.mp3"))
+personagem2 = Jogador(caminho_relativo("imagens/personagem.png"),150, 100, 300, 590,caminho_relativo("sons/no.mp3"))
+personagem3 = Jogador(caminho_relativo("imagens/personagem.png"),150, 100, 300, 590,caminho_relativo("sons/vitoria.mp3"))
+inicial = Jogador(caminho_relativo("imagens/detalhes.png"),150, 100, 300, 590,caminho_relativo("sons/vitoria.mp3"))
+som = Jogador(caminho_relativo("imagens/detalhes.png"),150, 100, 300, 590,caminho_relativo("sons/vitoria.mp3"))
 
-trofeu = pygame.image.load("imagens/trofeu.png")
+trofeu = pygame.image.load(caminho_relativo("imagens/trofeu.png"))
 trofeu = pygame.transform.scale(trofeu, (100, 100)) 
 
-estrela = pygame.image.load("imagens/estrela.png")
+estrela = pygame.image.load(caminho_relativo("imagens/estrela.png"))
 estrela = pygame.transform.scale(estrela, (100, 100)) 
 
 #Criando Obstaculos
-lista_obstaculo = [Obstaculos("imagens/fruta1.png",70,70),
-                   Obstaculos("imagens/fruta2.png",90,90),
-                   Obstaculos("imagens/fruta3.png",90,90),
-                   Obstaculos("imagens/fruta4.png",110,110),
-                   Obstaculos("imagens/fruta5.png",90,90),
-                   Obstaculos("imagens/fruta1.png",70,70),
-                   Obstaculos("imagens/fruta2.png",90,90),
-                   Obstaculos("imagens/fruta3.png",90,90)]
+lista_obstaculo = [Obstaculos(caminho_relativo("imagens/fruta1.png"),70,70),
+                   Obstaculos(caminho_relativo("imagens/fruta2.png"),90,90),
+                   Obstaculos(caminho_relativo("imagens/fruta3.png"),90,90),
+                   Obstaculos(caminho_relativo("imagens/fruta4.png"),110,110),
+                   Obstaculos(caminho_relativo("imagens/fruta5.png"),90,90),
+                   Obstaculos(caminho_relativo("imagens/fruta1.png"),70,70),
+                   Obstaculos(caminho_relativo("imagens/fruta2.png"),90,90),
+                   Obstaculos(caminho_relativo("imagens/fruta3.png"),90,90)]
 
-lista_ob = [Ob("imagens/raio.png",75,75),
-            Ob("imagens/snake.png",75,75),
-            Ob("imagens/bomb.png",75,75),
-            Ob("imagens/raio.png",110,100),
-            Ob("imagens/snake.png",75,75),
-            Ob("imagens/bomb.png",75,75),
-            Ob("imagens/raio.png",75,75),
-            Ob("imagens/snake.png",75,75),
-            Ob("imagens/bomb.png",75,75)]
+lista_ob = [Ob(caminho_relativo("imagens/raio.png"),75,75),
+            Ob(caminho_relativo("imagens/snake.png"),75,75),
+            Ob(caminho_relativo("imagens/bomb.png"),75,75),
+            Ob(caminho_relativo("imagens/raio.png"),110,100),
+            Ob(caminho_relativo("imagens/snake.png"),75,75),
+            Ob(caminho_relativo("imagens/bomb.png"),75,75),
+            Ob(caminho_relativo("imagens/raio.png"),75,75),
+            Ob(caminho_relativo("imagens/snake.png"),75,75),
+            Ob(caminho_relativo("imagens/bomb.png"),75,75)]
 
-inicial = pygame.image.load("imagens/detalhes.png")
+inicial = pygame.image.load(caminho_relativo("imagens/detalhes.png"))
 inicial = pygame.transform.scale(inicial, (1200, 700))
 
 fonte = pygame.font.SysFont("Berlin Sans FB Demi",50,True,False)  # Fonte do placar
 fonte2 = pygame.font.SysFont("Berlin Sans FB Demi",50,True,False)  # Fonte do placar
 
 #Criando fundo
-fundo = pygame.image.load("imagens/floresta.png")  # Importando Imagem
+fundo = pygame.image.load(caminho_relativo("imagens/floresta.png"))  # Importando Imagem
 fundo = pygame.transform.scale(fundo, (1200, 700))  # Ajustando o tamanho da imagem para caber na tela
 
 estado = "DETALHES"
@@ -82,7 +82,6 @@ while rodando: # A variavel rodando ira controlar o tempo de jogo
                  poder = True
                  poder_usos -= 1  
 
-
     if estado == "DETALHES":
         tela.blit(inicial,(0,0))
 
@@ -103,7 +102,6 @@ while rodando: # A variavel rodando ira controlar o tempo de jogo
              if contador_tempo >= 195:
                   poder = False
                   contador_tempo = 0 
-  
                   
                 #inimigo
         for obstaculo in lista_obstaculo:
@@ -140,16 +138,15 @@ while rodando: # A variavel rodando ira controlar o tempo de jogo
                     estado = True
 
     elif estado == "FIM DE JOGO":
-            vitoria = pygame.image.load("imagens/win.png")
+            vitoria = pygame.image.load(caminho_relativo("imagens/win.png"))
             vitoria = pygame.transform.scale(vitoria,(1200,700)) #Tamanho que a imagem sera mostrada 
             tela.blit(vitoria,(0,0))
             personagem3.som.play()
 
     elif estado == True:
-        vitoria2 = pygame.image.load("imagens/derrota.png")
+        vitoria2 = pygame.image.load(caminho_relativo("imagens/derrota.png"))
         vitoria2 = pygame.transform.scale(vitoria2,(1200,700)) #Tamanho que a imagem sera mostrada 
         tela.blit(vitoria2,(0,0))
-
 
     pygame.display.update()
 
